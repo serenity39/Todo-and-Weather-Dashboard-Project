@@ -52,7 +52,7 @@
 }
 
 .todo-item:hover {
-  background: #f0f0f0b2;
+  background: #77ccf383;
 }
 
 .todo-section {
@@ -67,9 +67,8 @@
 }
 
 .delete-button {
-  background: #555;
+  background: transparent;
   border: none;
-  color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
   cursor: pointer;
@@ -81,4 +80,56 @@
 
 .delete-button:hover {
   background: #d11a2a;
+}
+
+.edit-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+  margin-right: 0.5rem;
+}
+
+.save-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #3e8e41;
+}
+
+.edit-button {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #d11a2a;
+}
+
+.todo-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-item-buttons {
+  display: flex;
+  gap: 0.5rem;
 }

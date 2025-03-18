@@ -27,6 +27,17 @@ export default function TodoList() {
         setTodos(updatedTodos);
     }
 
+    function handleEditClick(index, editedText) {
+        // Edit the todo at the given index.
+        const updatedTodos = todos.map(function (todo, i) {
+            if (i === index) {
+                return editedText;
+            }
+            return todo;
+        });
+        setTodos(updatedTodos);
+    }
+
 
     return (
         <div>
@@ -58,6 +69,7 @@ export default function TodoList() {
                                     todo={todo}
                                     index={index}
                                     onDelete={handleDeleteClick}
+                                    onEdit={handleEditClick}
                                 />
                             );
                             })}
