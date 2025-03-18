@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
+import TodoItem from './TodoItem';
 
 export default function TodoList() {
     const [newTodo, setNewTodo] = useState('');
     const [todos, setTodos] = useState([]);
 
     function handleInputChange(e) {
+        // Update the newTodo state whenever the input changes.
         setNewTodo(e.target.value);
     }
 
     function handleAddClick() {
+        // Add the new todo to the list of todos.
         // Prevent adding an "empty" todo.
         if (newTodo.trim() === '') return;
 
         setTodos([...todos, newTodo]);
         setNewTodo('');
+    }
+
+    function handleDeleteClick(index) {
+        // Delete the todo at the given index.
+        const updatedTodos = todos.filter(function (_, i) {
+            return i !== index;
+        });
+        setTodos(updatedTodos);
     }
 
 
@@ -31,13 +42,22 @@ export default function TodoList() {
                 <button className="add-button" onClick={handleAddClick}>Add Todo</button>
             </div>
             <div className="todo-section">
-                {todos.length === 0 ? (<p className="empty-message">No todos yet!</p>) : (
+                {todos.length === 0 ? (
+                    <p className="empty-message">No todos yet!</p>
+                ) : (
                     <ul className="todo-list">
                         {todos.map(function (todo, index) {
-                            return <li className="todo-item" key={index}>{todo}</li>;
+                            return (
+                                <TodoItem
+                                    key={index}
+                                    todo={todo}
+                                    index={index}
+                                    onDelete={handleDeleteClick}
+                                />
+                            );
                             })}
-                        </ul>
-                    )}
+                    </ul>
+                )}
             </div>
         </div>
     );
