@@ -37,6 +37,11 @@ export default function TodoList() {
                     type="text" 
                     value={newTodo}
                     onChange={handleInputChange}
+                    onKeyDown={function (e) {
+                        if (e.key === 'Enter') {
+                            handleAddClick();
+                        }
+                    }}
                     placeholder="Enter a todo item"
                 />
                 <button className="add-button" onClick={handleAddClick}>Add Todo</button>
