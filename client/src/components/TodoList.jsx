@@ -15,7 +15,7 @@ export default function TodoList() {
         // Prevent adding an "empty" todo.
         if (newTodo.trim() === '') return;
 
-        setTodos([...todos, newTodo]);
+        setTodos([...todos, {text: newTodo, completed: false}]);
         setNewTodo('');
     }
 
@@ -31,7 +31,24 @@ export default function TodoList() {
         // Edit the todo at the given index.
         const updatedTodos = todos.map(function (todo, i) {
             if (i === index) {
-                return editedText;
+                return editedText.trim() === '' ? todo : {
+                    ...todo,
+                    text: editedText
+                };
+            }
+            return todo;
+        });
+        setTodos(updatedTodos);
+    }
+
+    function handleToggleComplete(index) {
+        // Toggle the "completed" status of the todo at the given index.
+        const updatedTodos = todos.map(function (todo, i) {
+            if (i === index) {
+                return {
+                    ...todo,
+                    completed: !todo.completed
+                };
             }
             return todo;
         });
@@ -41,7 +58,7 @@ export default function TodoList() {
 
     return (
         <div>
-            <h2>Todo List</h2>
+            <h2>Todo List:</h2>
             <div className="todo-input-wrapper">
                 <input
                     className="todo-input" 
@@ -70,6 +87,7 @@ export default function TodoList() {
                                     index={index}
                                     onDelete={handleDeleteClick}
                                     onEdit={handleEditClick}
+                                    onToggleComplete={handleToggleComplete}
                                 />
                             );
                             })}

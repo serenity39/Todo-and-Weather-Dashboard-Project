@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 export default function TodoItem(props) {
     const [isEditing, setIsEditing] = useState(false);
-    const [editedText, setEditedText] = useState(props.todo);
+    const [editedText, setEditedText] = useState(props.todo.text);
 
     function handleEditClick() {
         setIsEditing(true);
@@ -14,7 +14,7 @@ export default function TodoItem(props) {
     }
 
     return (
-        <li className="todo-item">
+        <li className={`todo-item ${props.todo.completed ? 'completed' : ''}`}>
             {isEditing ? (
                 <>
                     <input
@@ -39,8 +39,18 @@ export default function TodoItem(props) {
                 </>
             ) : (
                 <div className="todo-item-content">
-                    <span>{props.todo}</span>
-                    <div className="todo-item-buttons">
+                    <div className="todo-left">
+                        <input
+                            type="checkbox"
+                            className="checkbox"
+                            checked={props.todo.completed}
+                            onChange={function () {
+                                props.onToggleComplete(props.index)
+                            }}
+                        />
+                        <span className="todo-text">{props.todo.text}</span>
+                    </div>
+                    <div className="todo-buttons">
                         <button 
                             className="edit-button"
                             onClick={handleEditClick}
