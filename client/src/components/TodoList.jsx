@@ -1,9 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TodoItem from './TodoItem';
+
 
 export default function TodoList() {
     const [newTodo, setNewTodo] = useState('');
     const [todos, setTodos] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    // Load todos from localStorage on mount
+    useEffect(function () {
+        const savedTodos = localStorage.getItem('todos');
+        if (savedTodos) {
+            setTodos(JSON.parse(savedTodos));
+        }
+        setIsLoaded(true);
+    }, []);
+
+    // Save todos to localStorage whenever they change
+    useEffect(function () {
+        if (isLoaded) {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+    }, [todos, isLoaded]);
 
     function handleInputChange(e) {
         // Update the newTodo state whenever the input changes.
