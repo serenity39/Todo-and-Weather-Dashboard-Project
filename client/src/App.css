@@ -1,0 +1,256 @@
+/* Wrapper for input and add button */
+.todo-input-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* Input box */
+.todo-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Add button */
+.add-button {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4c7faf;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #3c68a8;
+}
+
+/* Todo list wrapper */
+.todo-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+/* Each todo item container */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  color: #333;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.todo-item:hover {
+  background: #e5f6fd;
+}
+
+.todo-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Left section of todo (checkbox + text) */
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Checkbox */
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #4c7faf;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* When checked */
+.checkbox:checked {
+  background-color: #4c7faf;
+  border-color: #4c7faf;
+}
+
+/* Checkmark */
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Text for todo */
+.todo-text {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* When marked completed */
+.completed .todo-text {
+  text-decoration: line-through;
+}
+
+.todo-item.completed {
+  background-color: #3e8e41;
+}
+
+/* Right section for buttons */
+.todo-buttons{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Delete button */
+.delete-button {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.delete-button:hover {
+  background: #d11a2a;
+}
+
+/* Edit button */
+.edit-button {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+  background: #d11a2a;
+}
+
+/* Edit input when editing */
+.edit-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 70%;
+  margin-right: 0.5rem;
+}
+
+/* Save button after editing */
+.save-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #3e8e41;
+}
+
+/* Empty message styling */
+.empty-message {
+  color: #aaa;
+  font-style: italic;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+/* Wrapper for filters */
+.filters-container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+.filters-container div {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.separator {
+  font-size: 1.2rem;
+  color: #ccc; /* Light grey color */
+}
+
+/* Filter buttons */
+.filter-button {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #4c7faf;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #4c7faf;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.filter-button:hover {
+  background: #4c7faf;
+  color: white;
+}
+
+.filter-button.active {
+  background: #4c7faf;
+  color: white;
+}
+
+.clear-all {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #d11a2a;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.clear-all:hover {
+  background-color: #b31523;
+}
