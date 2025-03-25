@@ -6,6 +6,7 @@ export default function TodoList() {
     const [newTodo, setNewTodo] = useState('');
     const [todos, setTodos] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [filterType, setFilterType] = useState('all'); // "all", "completed", "incomplete"
 
     // Load todos from localStorage on mount
     useEffect(function () {
@@ -73,10 +74,27 @@ export default function TodoList() {
         setTodos(updatedTodos);
     }
 
+    function handleClearAllClick() {
+        // Clear all todos.
+        setTodos([]);
+        localStorage.removeItem("todos");
+    }
+
+    const filteredTodos = todos.filter(function (todo) {
+        // Filter the todos based on the selected filter type.
+        if (filterType === "incomplete") {
+            return !todo.completed;
+        } else if (filterType === "completed") {
+            return todo.completed;
+        } else {
+            return true; // "all"
+        }
+    });
 
     return (
         <div>
             <h2>Todo List:</h2>
+            {/* Input field and Add button */}
             <div className="todo-input-wrapper">
                 <input
                     className="todo-input" 
@@ -92,12 +110,29 @@ export default function TodoList() {
                 />
                 <button className="add-button" onClick={handleAddClick}>Add Todo</button>
             </div>
+
+            {/* Filter buttons */}
+            <div className="filters-container">
+                <div>
+                    <span>Filters:</span>
+                    <button className={`filter-button ${filterType === "all" ? "active" : ""}`} onClick={function () {setFilterType("all")}}>All</button>
+                    <button className={`filter-button ${filterType === "incomplete" ? "active" : ""}`} onClick={function () {setFilterType("incomplete")}}>Incomplete</button>
+                    <button className={`filter-button ${filterType === "completed" ? "active" : ""}`} onClick={function () {setFilterType("completed")}}>Completed</button>
+                </div>
+                
+                <span className="seperator">|</span>
+
+                {/* Clear all button */}
+                <button className="clear-all" onClick={handleClearAllClick}>Clear All</button>
+            </div>
+            
+            {/* Todo list */}
             <div className="todo-section">
                 {todos.length === 0 ? (
                     <p className="empty-message">No todos yet!</p>
                 ) : (
                     <ul className="todo-list">
-                        {todos.map(function (todo, index) {
+                        {filteredTodos.map(function (todo, index) {
                             return (
                                 <TodoItem
                                     key={index}
