@@ -1,25 +1,100 @@
-/* navbar */
-.nav-bar {
-  background-color: #1f1f1f;
-  padding: 1rem;
+/* App container */
+.app-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.nav-links {
-  list-style: none;
+/* navbar */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #121212;
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo-link {
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover .logo {
+  color: #4FC3F7;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+/* Nav link styling */
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: white;
-  font-weight: bold;
+  color: #e0e0e0;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0;
+  position: relative;
 }
 
 .nav-links li a:hover {
-  color: #4c7faf;
+  color: #4FC3F7;
+}
+
+/* Active link indicator */
+.nav-links li a.active {
+  color: #4FC3F7;
+}
+
+.nav-links li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #4FC3F7;
+  border-radius: 2px;
+}
+
+/* Main content area with padding for fixed navbar */
+.main-content {
+  padding-top: 80px; /* 60px navbar + 20px extra space */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  flex: 1;
 }
 
 
